@@ -6,4 +6,4 @@ before_install:
   - docker build -t jeducker/docker-react-dev -f Dockerfile.dev .
 
 script:
-  - docker run jeducker/docker-react-dev npm run test -- --coverage
+  - docker run -e CI=true jeducker/docker-react-dev npm run test
