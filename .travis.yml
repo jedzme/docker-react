@@ -1,13 +1,8 @@
-language: node_js
-node_js:
-  - node
+sudo: required
 services: 
   - docker
 
 before_install:
-  - echo "progress=false" >> ~/.npmrc
-
-install:
   - docker build -t jeducker/docker-react-dev -f Dockerfile.dev .
 
 script:
