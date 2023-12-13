@@ -6,6 +6,5 @@ COPY . .
 RUN npm run build
 
 FROM nginx
-RUN apt-get update && apt-get install -y npm
 EXPOSE 80
 COPY --from=builder /app/build /usr/share/nginx/html

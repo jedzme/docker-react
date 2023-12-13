@@ -1,4 +1,5 @@
-services: 
+language: node_js
+services:
   - docker
 
 before_install:
