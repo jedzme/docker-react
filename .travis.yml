@@ -1,12 +1,10 @@
-language: node_js
-node_js:
-  - 17
-cache: npm
+language: generic
+
 services:
   - docker
 
 before_script:
-  - docker build -t jeducker/docker-react -f Dockerfile .
+  - docker build -t jeducker/docker-react -f Dockerfile.dev .
 
 script:
   - docker run -e CI=true jeducker/docker-react npm run test
