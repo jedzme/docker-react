@@ -1,13 +1,21 @@
 sudo: required
-
 services: 
   - docker
 
 before_install:
-  - echo "progress=false" >> ~/.npmrc
-
-install:
-  - npm install
+  - docker build -t jeducker/docker-react-dev -f Dockerfile.dev .
 
 script:
-  - npm test -s
+  - docker run -e CI=true jeducker/docker-react-dev npm run test
+
+deploy:
+  provider: elasticbeanstalk
+  region: "us-east-1"
+  app: "docker-react-2"
+  env: "docker-react-2-env"
+  bucket_name: "elasticbeanstalk-us-east-1-096220112091"
+  bucket_path: "docker-react-2"
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY_ID
+  secret_access_key: "$AWS_SECRET_ACCESS_KEY"
