@@ -3,10 +3,10 @@ services:
   - docker
 
 before_install:
-  - docker build -t jeducker/docker-react-dev -f Dockerfile.dev .
+  - docker build -t jeducker/docker-react -f Dockerfile .
 
 script:
-  - docker run -e CI=true jeducker/docker-react-dev npm run test
+  - docker run -e CI=true jeducker/docker-react npm run test
 
 deploy:
   provider: elasticbeanstalk
@@ -16,6 +16,6 @@ deploy:
   bucket_name: "elasticbeanstalk-us-east-1-096220112091"
   bucket_path: "docker-react-2"
   on:
-    branch: master
+    branch: main
   access_key_id: $AWS_ACCESS_KEY_ID
   secret_access_key: "$AWS_SECRET_ACCESS_KEY"
