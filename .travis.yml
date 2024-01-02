@@ -3,7 +3,7 @@ language: generic
 services:
   - docker
 
-before_script:
+before_install:
   - docker build -t jeducker/docker-react -f Dockerfile.dev .
 
 script:
